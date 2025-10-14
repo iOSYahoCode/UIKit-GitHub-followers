@@ -14,7 +14,7 @@
 		DC1FA4902E9E21A300E842B9 /* Exceptions for "UIKIT_GHFollowers" folder in "UIKIT_GHFollowers" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Resources/Info.plist,
 			);
 			target = DC1FA47D2E9E21A200E842B9 /* UIKIT_GHFollowers */;
 		};
@@ -147,7 +147,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8X8QHL87ZY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = UIKIT_GHFollowers/Info.plist;
+				INFOPLIST_FILE = UIKIT_GHFollowers/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GHFollowers;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -183,7 +183,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8X8QHL87ZY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = UIKIT_GHFollowers/Info.plist;
+				INFOPLIST_FILE = UIKIT_GHFollowers/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GHFollowers;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
