@@ -10,7 +10,7 @@ import UIKit
 class SearchVC: UIViewController {
     
     let logoImageView = UIImageView()
-    let usernameTextField = GFTextField(placeholderText: "Enter username", labelText: "Username:")
+    let usernameTextField = GFTextFieldWithLabel(placeholderText: "Enter username", descriptionLabelText: "Username:")
     let callToCationButton = GFButton(backgroundColor: .systemIndigo, title: "Get followers!")
     let userNameTitleLabel = GFBodyLabel(textAlignment: .left)
 

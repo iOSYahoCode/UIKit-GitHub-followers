@@ -9,8 +9,6 @@ import UIKit
 
 class GFTextField: UITextField {
     
-    let descriptionLabel = GFBodyLabel(textAlignment: .left)
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -20,13 +18,11 @@ class GFTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(placeholderText: String, labelText: String) {
+    init(placeholderText: String) {
         super.init(frame: .zero)
         self.placeholder = placeholderText
-        self.descriptionLabel.text = labelText
         
         configure()
-        configureDescriptionLabel()
     }
     
     
@@ -47,16 +43,5 @@ class GFTextField: UITextField {
         returnKeyType = .go
         backgroundColor = .tertiarySystemBackground
         autocorrectionType = .no
-    }
-    
-    private func configureDescriptionLabel() {
-        self.addSubview(descriptionLabel)
-        
-        NSLayoutConstraint.activate([
-            descriptionLabel.bottomAnchor.constraint(equalTo: self.topAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            descriptionLabel.heightAnchor.constraint(equalToConstant: 30)
-        ])
     }
 }
