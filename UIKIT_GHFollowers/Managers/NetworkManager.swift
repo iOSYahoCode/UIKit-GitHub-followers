@@ -13,7 +13,7 @@ class NetworkManager {
     private let baseURL = "https://api.github.com/users/"
     
     private init() {
-        cache.countLimit = 150
+        cache.countLimit = 300
     }
     
     func getFollowers(for username: String, page: Int, completed: @escaping (Result<[Follower], GFError>) -> Void) {
