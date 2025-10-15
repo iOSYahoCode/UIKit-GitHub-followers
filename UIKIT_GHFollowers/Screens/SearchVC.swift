@@ -10,8 +10,9 @@ import UIKit
 class SearchVC: UIViewController {
     
     let logoImageView = UIImageView()
-    let usernameTextField = GFSearchTextField(placeholderText: "Enter a username")
+    let usernameTextField = GFTextField(placeholderText: "Enter username", labelText: "Username:")
     let callToCationButton = GFButton(backgroundColor: .systemIndigo, title: "Get followers!")
+    let userNameTitleLabel = GFBodyLabel(textAlignment: .left)
 
     var isUsernameEntered: Bool {
         guard let saveUserName = usernameTextField.text else {return false}
@@ -65,13 +66,14 @@ class SearchVC: UIViewController {
             logoImageView.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
+
     
     private func configureSearcTF() {
         view.addSubview(usernameTextField)
         usernameTextField.delegate = self
         
         NSLayoutConstraint.activate([
-            usernameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 50),
+            usernameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 60),
             usernameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             usernameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             usernameTextField.heightAnchor.constraint(equalToConstant: 50)
