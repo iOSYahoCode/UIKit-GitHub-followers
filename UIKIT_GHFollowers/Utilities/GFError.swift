@@ -1,5 +1,5 @@
 //
-//  ErrorMesssage.swift
+//  GFError.swift
 //  UIKIT_GHFollowers
 //
 //  Created by Yaroslaw Homziak on 15.10.2025.

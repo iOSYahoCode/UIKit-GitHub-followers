@@ -14,6 +14,7 @@ class FollowersListVC: UIViewController {
     var filteredFollowers: [Follower] = []
     var page: Int = 1
     var hasMoreFollowers: Bool = true
+    var isSearching: Bool = false
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<GFSection, Follower>!
@@ -74,7 +75,7 @@ class FollowersListVC: UIViewController {
                     DispatchQueue.main.async {self.showEmptyStateView(with: message, in: self.view)}
                     return
                 }
-                self.updateData(followersList: followers)
+                self.updateData(followersList: self.followers)
             
             case .failure(let error):
                 self.presentGFAlertOnMainThread(
@@ -117,21 +118,33 @@ extension FollowersListVC: UICollectionViewDelegate {
             getFollowers(userName: userName, page: page)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let follower = isSearching ? filteredFollowers[indexPath.item] : followers[indexPath.item]
+        
+        let userInfoVC = UserInfoVC()
+        let navController = UINavigationController(rootViewController: userInfoVC)
+        userInfoVC.userName = follower.login
+        present(navController, animated: true)
+    }
 }
 
 extension FollowersListVC: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, filter.isEmpty == false else {
+            isSearching = false
             updateData(followersList: followers)
             return
         }
         
+        isSearching = true
         filteredFollowers = followers.filter{ $0.login.lowercased().contains(filter.lowercased())}
         updateData(followersList: filteredFollowers)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
         updateData(followersList: followers)
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Codable {
+nonisolated struct User: Codable, Hashable, Sendable {
     let login: String
     let avatarUrl: String
     let htmlUrl: String
