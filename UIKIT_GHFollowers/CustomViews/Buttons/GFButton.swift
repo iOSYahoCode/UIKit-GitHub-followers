@@ -11,6 +11,7 @@ class GFButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configure()
     }
     
     required init?(coder: NSCoder) {
@@ -22,6 +23,11 @@ class GFButton: UIButton {
         self.backgroundColor = backgroundColor
         self.setTitle(title, for: .normal)
         configure()
+    }
+    
+    func set(backgroundColor: UIColor, textTitle: String) {
+        self.backgroundColor = backgroundColor
+        self.setTitle(textTitle, for: .normal)
     }
     
     private func configure() {

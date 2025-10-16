@@ -10,7 +10,10 @@ import UIKit
 class SearchVC: UIViewController {
     
     let logoImageView = UIImageView()
-    let usernameTextField = GFTextFieldWithLabel(placeholderText: "Enter username", descriptionLabelText: "Username:")
+    let usernameTextField = GFTextFieldWithLabel(
+        placeholderText: "Enter username",
+        descriptionLabelText: "Username:")
+    
     let callToCationButton = GFButton(backgroundColor: .systemIndigo, title: "Get followers!")
     let userNameTitleLabel = GFBodyLabel(textAlignment: .left)
 
@@ -47,6 +50,7 @@ class SearchVC: UIViewController {
         followerListVC.title = usernameTextField.text!
         
         navigationController?.pushViewController(followerListVC, animated: true)
+        usernameTextField.text = nil
     }
     
     private func createDesmissKeyboardTapGesture() {
