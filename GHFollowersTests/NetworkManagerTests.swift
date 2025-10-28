@@ -16,8 +16,7 @@ final class NetworkManagerTests: XCTestCase {
         let validUserName = "Yaroslaw9050"
         let networkManager = NetworkManager.shared
         
-        let expectation = self.expectation(
-            description: "Get user infro from server")
+        let expectation = self.expectation(description: "Get user infro from server")
         var recivedUser: User?
         var recivedError: GFError?
         
