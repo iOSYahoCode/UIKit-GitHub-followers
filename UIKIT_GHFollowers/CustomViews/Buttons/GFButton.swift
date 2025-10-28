@@ -36,5 +36,31 @@ class GFButton: UIButton {
         layer.cornerRadius = 10
         setTitleColor(.white, for: .normal)
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        
+        addTarget(self, action: #selector(handleTap), for: .touchDown)
+    }
+    
+    @objc private func handleTap() {
+        animatePressDown()
+    }
+    
+    private func animatePressDown() {
+        UIView.animate(withDuration: 0.2) {
+            self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        } completion: { [weak self] _ in
+            self?.animatePressUp()
+        }
+    }
+    
+    private func animatePressUp() {
+        UIView.animate(withDuration: 0.15,
+                       delay: 0,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 3,
+                       options: .curveEaseOut) {
+            self.transform = .identity
+        } completion: { _ in
+            super.sendActions(for: .primaryActionTriggered)
+        }
     }
 }
