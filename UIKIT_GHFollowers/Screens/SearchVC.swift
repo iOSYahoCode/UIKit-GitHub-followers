@@ -14,20 +14,21 @@ class SearchVC: UIViewController {
         placeholderText: "Enter username",
         descriptionLabelText: "Username:")
     
-    let callToCationButton = GFButton(backgroundColor: .systemIndigo, title: "Get followers!")
+    let callToAtionButton = GFButton(backgroundColor: .systemIndigo, title: "Get followers!")
     let userNameTitleLabel = GFBodyLabel(textAlignment: .left)
 
     var isUsernameEntered: Bool {
-        guard let saveUserName = usernameTextField.text else {return false}
-        return !saveUserName.isEmpty
+        guard let userName = usernameTextField.text else { return false }
+        return !userName.isEmpty
     }
+    
+    //MARK: ViewController's functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        createDesmissKeyboardTapGesture()
+        configureLayoutUI()
+        createDismissKeyboardTapGesture()
         configureLogoIV()
-        configureSearcTF()
         configureToActionButton()
     }
     
@@ -35,6 +36,8 @@ class SearchVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
+    
+    // MARK: Actions
     
     @objc private func pushFollowerListVC() {
         guard isUsernameEntered else {
@@ -53,49 +56,49 @@ class SearchVC: UIViewController {
         usernameTextField.text = nil
     }
     
-    private func createDesmissKeyboardTapGesture() {
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tap)
-    }
+    //MARK: UI configuration
     
-    private func configureLogoIV() {
-        view.addSubview(logoImageView)
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.image = UIImage(named: "gh-logo")!
+    private func configureLayoutUI() {
+        let elements: [UIView] = [logoImageView, usernameTextField, callToAtionButton]
+        elements.forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview($0)
+        }
+        view.backgroundColor = .systemBackground
         
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.heightAnchor.constraint(equalToConstant: 200),
-            logoImageView.widthAnchor.constraint(equalToConstant: 200)
-        ])
-    }
-
-    
-    private func configureSearcTF() {
-        view.addSubview(usernameTextField)
-        usernameTextField.delegate = self
-        
-        NSLayoutConstraint.activate([
+            logoImageView.widthAnchor.constraint(equalToConstant: 200),
+            
             usernameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 60),
             usernameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             usernameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            usernameTextField.heightAnchor.constraint(equalToConstant: 50)
+            usernameTextField.heightAnchor.constraint(equalToConstant: 50),
+            
+            callToAtionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            callToAtionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            callToAtionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            callToAtionButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
+    private func createDismissKeyboardTapGesture() {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+    }
+    
+    private func configureLogoIV() {
+        logoImageView.image = UIImage(named: ImageAsset.githubLogo)!
+    }
+    
     private func configureToActionButton() {
-        view.addSubview(callToCationButton)
-        callToCationButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
-        
-        NSLayoutConstraint.activate([
-            callToCationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
-            callToCationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            callToCationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            callToCationButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        callToAtionButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
     }
 }
+
+//MARK: Extensions
 
 extension SearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

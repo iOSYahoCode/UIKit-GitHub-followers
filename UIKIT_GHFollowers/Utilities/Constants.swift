@@ -14,3 +14,9 @@ enum SFSUmbols {
     static let following = "heart"
     static let followers = "person.2"
 }
+
+enum ImageAsset {
+    static let avatarPlaceholder = "avatar-placeholder"
+    static let emptyState = "empty-state-logo"
+    static let githubLogo = "gh-logo"
+}

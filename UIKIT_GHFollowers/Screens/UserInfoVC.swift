@@ -19,8 +19,6 @@ class UserInfoVC: UIViewController {
     let itemViewTwo = UIView()
     let dateLabel = GFBodyLabel(textAlignment: .center)
     
-    var itemViews: [UIView] = []
-    
     var userName: String!
     weak var delegate: FollowerListVCDelegate!
     
@@ -47,15 +45,15 @@ class UserInfoVC: UIViewController {
     
         let padding: CGFloat = 20
         let itemHeigh: CGFloat = 150
-        itemViews = [headerView, itemViewOne, itemViewTwo, dateLabel]
+        let elements = [headerView, itemViewOne, itemViewTwo, dateLabel]
         
-        for itemView in itemViews {
-            view.addSubview(itemView)
-            itemView.translatesAutoresizingMaskIntoConstraints = false
+        elements.forEach {
+            view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
             
             NSLayoutConstraint.activate([
-                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             ])
         }
         
@@ -110,6 +108,8 @@ class UserInfoVC: UIViewController {
         childVC.didMove(toParent: self)
     }
 }
+
+// MARK: Extensions
 
 extension UserInfoVC: UserInfoVCDelegate {
     func didTapGithubProfile(for user: User) {

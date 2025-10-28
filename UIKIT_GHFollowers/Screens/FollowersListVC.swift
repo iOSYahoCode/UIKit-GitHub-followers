@@ -109,6 +109,8 @@ class FollowersListVC: UIViewController {
     }
 }
 
+// MARK: Extensions
+
 extension FollowersListVC: UICollectionViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offsetY = scrollView.contentOffset.y
