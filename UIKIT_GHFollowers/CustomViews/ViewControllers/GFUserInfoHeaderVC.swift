@@ -29,14 +29,15 @@ class GFUserInfoHeaderVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addSubView()
         lauoutUI()
         configureUIElements()
     }
     
     private func configureUIElements() {
+        let emoji = EmojiGenerator.shared.getRandomEmoji()
+        
         userImageView.downloadImage(from: user.avatarUrl)
-        userNameLabel.text = user.login
+        userNameLabel.text = "\(user.login) \(emoji)"
         nameLabel.text = user.name ?? "Name not found"
         locationLabel.text = user.location ?? "No location"
         bioLabel.text = user.bio ?? ""
@@ -46,18 +47,13 @@ class GFUserInfoHeaderVC: UIViewController {
         locationImageView.tintColor = .secondaryLabel
     }
     
-    private func addSubView() {
-        view.addSubview(userImageView)
-        view.addSubview(userNameLabel)
-        view.addSubview(nameLabel)
-        view.addSubview(locationImageView)
-        view.addSubview(locationLabel)
-        view.addSubview(bioLabel)
-    }
-    
     private func lauoutUI() {
         let padding: CGFloat = 20
         let textImagePadding: CGFloat = 12
+        let elements = [userImageView, userNameLabel, nameLabel, locationImageView, locationLabel, bioLabel]
+        
+        elements.forEach { view.addSubview($0) }
+        
         locationImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
